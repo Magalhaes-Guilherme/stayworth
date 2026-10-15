@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+ * Design tokens — one confident accent (deep teal) on warm neutrals.
+ * ---------------------------------------------------------------- */
+@theme {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #eef8f6;
+  --color-brand-100: #d4efe9;
+  --color-brand-200: #a9ded3;
+  --color-brand-300: #77c5b7;
+  --color-brand-400: #3fa694;
+  --color-brand-500: #1a8d7c;
+  --color-brand-600: #0d766a;
+  --color-brand-700: #0b5f56;
+  --color-brand-800: #0b4c46;
+  --color-brand-900: #0a3e3a;
+
+  --color-ink: #0f1d2b;
+  --color-ink-soft: #3c4857;
+  --color-muted: #5d6877;
+  --color-faint: #8a93a0;
+  --color-line: #e6e3dc;
+  --color-line-soft: #efede8;
+  --color-canvas: #f7f5f0;
+  --color-surface: #ffffff;
+
+  --shadow-card: 0 1px 2px rgb(15 29 43 / 0.04), 0 4px 16px -4px rgb(15 29 43 / 0.06);
+  --shadow-lift: 0 1px 2px rgb(15 29 43 / 0.05), 0 12px 32px -8px rgb(15 29 43 / 0.12);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------
+ * Range input — filled track driven by the --fill custom property.
+ * ---------------------------------------------------------------- */
+.range {
+  --fill: 50%;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.range:focus {
+  outline: none;
+}
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-brand-600) 0 var(--fill),
+    var(--color-line) var(--fill) 100%
+  );
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-line);
+}
+.range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-brand-600);
+}
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-brand-600);
+  box-shadow: 0 1px 3px rgb(15 29 43 / 0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--color-brand-600);
+  box-shadow: 0 1px 3px rgb(15 29 43 / 0.18);
+}
+.range:hover::-webkit-slider-thumb {
+  transform: scale(1.08);
+}
+.range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px var(--color-brand-200);
+}
+.range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px var(--color-brand-200);
+}
+
+/* Recharts: keep focus rings off the SVG surface (we expose a table instead). */
+.recharts-surface:focus,
+.recharts-wrapper:focus,
+.recharts-sector:focus,
+.recharts-rectangle:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
